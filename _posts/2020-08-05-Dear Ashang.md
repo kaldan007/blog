@@ -1,7 +1,7 @@
 ---
 toc: False
 layout: post
-description: Letter to ashang on hid 3rd death anniversary.
+description: Letter to ashang on his 3rd death anniversary.
 categories: [Reflection]
 title: Dear Ashang
 ---
@@ -15,7 +15,9 @@ It was indeed tough for all us for losing you. Especially for me, it was unbelie
 About today, Me and some of my friends went to a slum near Gagal airport to give a lunch. The situation over there was very poor. I saw lots of suffering and felt many thing at once. When we reached there, we immediately started working as we want to serve the lunch on time. After chopping onions, I went to river bank to rest. Over there I met a guy called Jonnywalker. Even though due to financial problem he had many profession but his is actually an artist performing folk songs. He told us his story about performing at Jammu's All India Radio station. I requested him to sing while we serve food but he insisted to perform then itself. He started singing **Dama Dam Mus ti ka Landar**(It is famous folk song from Rajastan), It was too good that it took all the suffering in that area for a while. I was amazed by the power of music. After that we were back to reality. Me and one of my friend went to look around the place. I forced myself to explore the place as it is not very hard to debate about emptiness and impermanence and all, but I wanted to see their suffering. I felt gratitude to His Holiness and my ancestors for dedicating their life for us as they have suffered similar. I told them to not give up. I wish I could have told them more and motivate them but I was speechless when I was there. After serving the food, I saw the full of smiles. I felt helpless as I was wondering when will they get such lunch again. I remembered a discussion about ultimate solution of samsara being free of ignorance with Cho Wangdak. I was wondering when will they get chance to think about such things. I hope they will get the chance and take a different route in their life. I wish the same for all of us as all of us have fair share of suffering due to our ignorance. I guess I will stop here today. I will write you soon. We miss you dearly Ashang la.
 
 With love,
+
 Yours Tsawo Tolo
+
 Kaldan
 
 
