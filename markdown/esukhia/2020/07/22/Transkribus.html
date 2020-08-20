@@ -9,13 +9,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Handwritten Text Recognition in Tibetan manuscript using Transkribus." />
 <meta property="og:description" content="Handwritten Text Recognition in Tibetan manuscript using Transkribus." />
-<link rel="canonical" href="https://kaldan007.github.io/blog/markdown/self%20reflection/2020/07/22/Transkribus.html" />
-<meta property="og:url" content="https://kaldan007.github.io/blog/markdown/self%20reflection/2020/07/22/Transkribus.html" />
+<link rel="canonical" href="https://kaldan007.github.io/blog/markdown/esukhia/2020/07/22/Transkribus.html" />
+<meta property="og:url" content="https://kaldan007.github.io/blog/markdown/esukhia/2020/07/22/Transkribus.html" />
 <meta property="og:site_name" content="Kaldan’s Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-07-22T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Handwritten Text Recognition in Tibetan manuscript using Transkribus.","@type":"BlogPosting","headline":"How to use Transkribus to transcribe Tibetan pecha(pering) effectively?","dateModified":"2020-07-22T00:00:00-05:00","datePublished":"2020-07-22T00:00:00-05:00","url":"https://kaldan007.github.io/blog/markdown/self%20reflection/2020/07/22/Transkribus.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://kaldan007.github.io/blog/markdown/self%20reflection/2020/07/22/Transkribus.html"},"@context":"https://schema.org"}</script>
+{"description":"Handwritten Text Recognition in Tibetan manuscript using Transkribus.","@type":"BlogPosting","headline":"How to use Transkribus to transcribe Tibetan pecha(pering) effectively?","dateModified":"2020-07-22T00:00:00-05:00","datePublished":"2020-07-22T00:00:00-05:00","url":"https://kaldan007.github.io/blog/markdown/esukhia/2020/07/22/Transkribus.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://kaldan007.github.io/blog/markdown/esukhia/2020/07/22/Transkribus.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://kaldan007.github.io/blog/feed.xml" title="Kaldan's Blog" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>How to use Transkribus to transcribe Tibetan pecha(pering) effectively? | Kaldan’s Blog</title>
@@ -24,13 +24,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Handwritten Text Recognition in Tibetan manuscript using Transkribus." />
 <meta property="og:description" content="Handwritten Text Recognition in Tibetan manuscript using Transkribus." />
-<link rel="canonical" href="https://kaldan007.github.io/blog/markdown/self%20reflection/2020/07/22/Transkribus.html" />
-<meta property="og:url" content="https://kaldan007.github.io/blog/markdown/self%20reflection/2020/07/22/Transkribus.html" />
+<link rel="canonical" href="https://kaldan007.github.io/blog/markdown/esukhia/2020/07/22/Transkribus.html" />
+<meta property="og:url" content="https://kaldan007.github.io/blog/markdown/esukhia/2020/07/22/Transkribus.html" />
 <meta property="og:site_name" content="Kaldan’s Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-07-22T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Handwritten Text Recognition in Tibetan manuscript using Transkribus.","@type":"BlogPosting","headline":"How to use Transkribus to transcribe Tibetan pecha(pering) effectively?","dateModified":"2020-07-22T00:00:00-05:00","datePublished":"2020-07-22T00:00:00-05:00","url":"https://kaldan007.github.io/blog/markdown/self%20reflection/2020/07/22/Transkribus.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://kaldan007.github.io/blog/markdown/self%20reflection/2020/07/22/Transkribus.html"},"@context":"https://schema.org"}</script>
+{"description":"Handwritten Text Recognition in Tibetan manuscript using Transkribus.","@type":"BlogPosting","headline":"How to use Transkribus to transcribe Tibetan pecha(pering) effectively?","dateModified":"2020-07-22T00:00:00-05:00","datePublished":"2020-07-22T00:00:00-05:00","url":"https://kaldan007.github.io/blog/markdown/esukhia/2020/07/22/Transkribus.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://kaldan007.github.io/blog/markdown/esukhia/2020/07/22/Transkribus.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -101,7 +101,7 @@ window.onload = wrap_img;
         <a class="category-tags-link" href="/blog/categories/#markdown">markdown</a>
         &nbsp;
       
-        <a class="category-tags-link" href="/blog/categories/#self reflection">self reflection</a>
+        <a class="category-tags-link" href="/blog/categories/#Esukhia">Esukhia</a>
         
       
       </p>
@@ -133,7 +133,7 @@ window.onload = wrap_img;
 <h2 id="block-diagram">
 <a class="anchor" href="#block-diagram" aria-hidden="true"><span class="octicon octicon-link"></span></a>Block diagram</h2>
 <p>Here is the block diagram of the whole procedure that we follow.
-<img src="/images/transkribus/block_diagram.png" alt=""></p>
+<img src="/blog/images/transkribus/block_diagram.png" alt=""></p>
 <h2 id="training-data-collection">
 <a class="anchor" href="#training-data-collection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Training data collection</h2>
 <p>Since most of our pechas are in distinct handwriting, we always try to train dedicated model for each pecha to get better transcription. We always train our models with training and validation data of ratio 8:2. While collecting training and validation data for the model, we tends to divide the process into two main parts. Those are layout analysis and getting respective trasncription.</p>
@@ -149,7 +149,7 @@ window.onload = wrap_img;
 <h2 id="post-processing-the-model-output">
 <a class="anchor" href="#post-processing-the-model-output" aria-hidden="true"><span class="octicon octicon-link"></span></a>Post Processing the Model output</h2>
 
-  </div><a class="u-url" href="/blog/markdown/self%20reflection/2020/07/22/Transkribus.html" hidden></a>
+  </div><a class="u-url" href="/blog/markdown/esukhia/2020/07/22/Transkribus.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
