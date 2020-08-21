@@ -19,7 +19,7 @@ Here is the block diagram of the whole procedure that we follow.
 
 
 ## Training data collection
-Since most of our pechas are in distinct handwriting, we always try to train dedicated model for each pecha to get better transcription. We always train our models with training and validation data of ratio 8:2. While collecting training and validation data for the model, we tends to divide the process into two main parts. Those are layout analysis and getting respective trasncription.
+Since most of our pechas are in distinct handwriting, we always try to train dedicated model for each pecha to get better transcription. We always train our models with training and validation data of ratio 8:2. While collecting training and validation data for the model, we tends to divide the process into two main parts. Those are layout analysis and getting respective transcription.
 
 ### Layout annalysis
 It is the part where segmentation of lines in image take place. Transkribus has multiple ways of doing the task design specifically for some general manuscripts layout. We tried mutliple layout analysis models among which newspaper model out perform the rest in our case. Hence we choosed it. But still newspaper model dosen't produce perfect layout analysis. In order to get better layout analysis, we have written a  script to tune layout analysis as per our requirement.
@@ -47,6 +47,34 @@ It is the part where segmentation of lines in image take place. Transkribus has 
 - We upload the updated **Page** folder along with image files and meta data files to the respective Transkribus Collection. 
 
 ### Transcript
+For preparing training data, the transciption of training images are done manually. But we have used different method to apply those transcript in our respective collection.
+#### What we tried:
+- Initially we transcript as we trace boxes but it turns out to be labour intensive and impractical with poor internet connectivity.
+- We found that under 400 pages model preform very poor as proofreading is more work than transcribing.  
+#### Our Solution:
+- We proofread Google OCR output of existing pecha and save it in a text file.
+- From that text file, we extract transcribe line by line and combine to layout analysis in Page folder(which consist of xml files having detail informations about segments present in image with their coordinates and respective transcript) with custom post-processing script.
+- The solution reduce the labour efford as we need to proof read Google OCRed result rather than transcripting everything from scratch. Also the whole process become less internet dependent.
+- Here is a screenshot of applied transcript using our script.
+
+![]({{ site.baseurl }}/images/transkribus/custom_transcript.png "Transcipt applied using our script")
+
 ## Model Training
-## Transcripting using Model
+#### What we tried:
+- We initially train our model on manually traced boxes hoping that model will learn our precise segmentation. Unfortunately, it didn't as we came to know that segmentation model and HTR model are two different thing. So we found preparing precise segemented training data unneccesary effort.
+- Our initial models were train on 50 epochs.
+#### Issues:
+- Model trained on  manual boxes performs poorly on "Newspaper" layout analysis 
+#### Our Solution:
+We used Newspaper Layout Analysis and run it on our script to get better segmentation and faster transcript applied. Trained our model on 500 epochs.
+## Transcribing using Model
+Since our model is ready, we started using it. The steps involve in transcribing pechas using our model are following:
+- Upload the pecha in our transkribus collection.
+- We run **Newspaper Layout Analysis** on the pecha.
+- Export the pecha in transkribus format.
+- Run our preprocessing script on the exported file to get better alignment and noise free document.
+- Upload the resultant document in collection.
+- Use our HTR model to transcribe.
+- Export the pecha in transkribus format.
 ## Post Processing the Model output
+The final result of model will be given as input to a post processing script. The post processing script will do required rearrangement and removal of noises. It will extract the transcribed text  and save it in a text file. That text file is your final result.
