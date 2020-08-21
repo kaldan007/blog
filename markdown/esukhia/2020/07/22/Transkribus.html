@@ -91,7 +91,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      2 min read
+      4 min read
     
 </span></p>
 
@@ -122,11 +122,22 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#our-solution">Our Solution:</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#transcript">Transcript</a></li>
+<li class="toc-entry toc-h3"><a href="#transcript">Transcript</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#what-we-tried-1">What we tried:</a></li>
+<li class="toc-entry toc-h4"><a href="#our-solution-1">Our Solution:</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#model-training">Model Training</a></li>
-<li class="toc-entry toc-h2"><a href="#transcripting-using-model">Transcripting using Model</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#model-training">Model Training</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#what-we-tried-2">What we tried:</a></li>
+<li class="toc-entry toc-h4"><a href="#issues">Issues:</a></li>
+<li class="toc-entry toc-h4"><a href="#our-solution-2">Our Solution:</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#transcribing-using-model">Transcribing using Model</a></li>
 <li class="toc-entry toc-h2"><a href="#post-processing-the-model-output">Post Processing the Model output</a></li>
 </ul><h2 id="what-is-transkribus">
 <a class="anchor" href="#what-is-transkribus" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Transkribus?</h2>
@@ -143,7 +154,7 @@ window.onload = wrap_img;
 
 <h2 id="training-data-collection">
 <a class="anchor" href="#training-data-collection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Training data collection</h2>
-<p>Since most of our pechas are in distinct handwriting, we always try to train dedicated model for each pecha to get better transcription. We always train our models with training and validation data of ratio 8:2. While collecting training and validation data for the model, we tends to divide the process into two main parts. Those are layout analysis and getting respective trasncription.</p>
+<p>Since most of our pechas are in distinct handwriting, we always try to train dedicated model for each pecha to get better transcription. We always train our models with training and validation data of ratio 8:2. While collecting training and validation data for the model, we tends to divide the process into two main parts. Those are layout analysis and getting respective transcription.</p>
 
 <h3 id="layout-annalysis">
 <a class="anchor" href="#layout-annalysis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Layout annalysis</h3>
@@ -185,12 +196,53 @@ window.onload = wrap_img;
 
 <h3 id="transcript">
 <a class="anchor" href="#transcript" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transcript</h3>
+<p>For preparing training data, the transciption of training images are done manually. But we have used different method to apply those transcript in our respective collection.</p>
+<h4 id="what-we-tried-1">
+<a class="anchor" href="#what-we-tried-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>What we tried:</h4>
+<ul>
+  <li>Initially we transcript as we trace boxes but it turns out to be labour intensive and impractical with poor internet connectivity.</li>
+  <li>We found that under 400 pages model preform very poor as proofreading is more work than transcribing.
+    <h4 id="our-solution-1">
+<a class="anchor" href="#our-solution-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Our Solution:</h4>
+  </li>
+  <li>We proofread Google OCR output of existing pecha and save it in a text file.</li>
+  <li>From that text file, we extract transcribe line by line and combine to layout analysis in Page folder(which consist of xml files having detail informations about segments present in image with their coordinates and respective transcript) with custom post-processing script.</li>
+  <li>The solution reduce the labour efford as we need to proof read Google OCRed result rather than transcripting everything from scratch. Also the whole process become less internet dependent.</li>
+  <li>Here is a screenshot of applied transcript using our script.</li>
+</ul>
+
+<p><img src="/blog/images/transkribus/custom_transcript.png" alt="" title="Transcipt applied using our script"></p>
+
 <h2 id="model-training">
 <a class="anchor" href="#model-training" aria-hidden="true"><span class="octicon octicon-link"></span></a>Model Training</h2>
-<h2 id="transcripting-using-model">
-<a class="anchor" href="#transcripting-using-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transcripting using Model</h2>
-<h2 id="post-processing-the-model-output">
+<h4 id="what-we-tried-2">
+<a class="anchor" href="#what-we-tried-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>What we tried:</h4>
+<ul>
+  <li>We initially train our model on manually traced boxes hoping that model will learn our precise segmentation. Unfortunately, it didn’t as we came to know that segmentation model and HTR model are two different thing. So we found preparing precise segemented training data unneccesary effort.</li>
+  <li>Our initial models were train on 50 epochs.
+    <h4 id="issues">
+<a class="anchor" href="#issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Issues:</h4>
+  </li>
+  <li>Model trained on  manual boxes performs poorly on “Newspaper” layout analysis
+    <h4 id="our-solution-2">
+<a class="anchor" href="#our-solution-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Our Solution:</h4>
+    <p>We used Newspaper Layout Analysis and run it on our script to get better segmentation and faster transcript applied. Trained our model on 500 epochs.</p>
+    <h2 id="transcribing-using-model">
+<a class="anchor" href="#transcribing-using-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transcribing using Model</h2>
+    <p>Since our model is ready, we started using it. The steps involve in transcribing pechas using our model are following:</p>
+  </li>
+  <li>Upload the pecha in our transkribus collection.</li>
+  <li>We run <strong>Newspaper Layout Analysis</strong> on the pecha.</li>
+  <li>Export the pecha in transkribus format.</li>
+  <li>Run our preprocessing script on the exported file to get better alignment and noise free document.</li>
+  <li>Upload the resultant document in collection.</li>
+  <li>Use our HTR model to transcribe.</li>
+  <li>Export the pecha in transkribus format.
+    <h2 id="post-processing-the-model-output">
 <a class="anchor" href="#post-processing-the-model-output" aria-hidden="true"><span class="octicon octicon-link"></span></a>Post Processing the Model output</h2>
+    <p>The final result of model will be given as input to a post processing script. The post processing script will do required rearrangement and removal of noises. It will extract the transcribed text  and save it in a text file. That text file is your final result.</p>
+  </li>
+</ul>
 
   </div><a class="u-url" href="/blog/markdown/esukhia/2020/07/22/Transkribus.html" hidden></a>
 </article>

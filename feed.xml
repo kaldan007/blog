@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://kaldan007.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kaldan007.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-08-21T00:39:39-05:00</updated><id>https://kaldan007.github.io/blog/feed.xml</id><title type="html">Kaldan’s Blog</title><subtitle>An easy to use blogging platform with support for Jupyter Notebooks.</subtitle><entry><title type="html">Dear Ashang</title><link href="https://kaldan007.github.io/blog/reflection/2020/08/05/Dear-Ashang.html" rel="alternate" type="text/html" title="Dear Ashang" /><published>2020-08-05T00:00:00-05:00</published><updated>2020-08-05T00:00:00-05:00</updated><id>https://kaldan007.github.io/blog/reflection/2020/08/05/Dear%20Ashang</id><content type="html" xml:base="https://kaldan007.github.io/blog/reflection/2020/08/05/Dear-Ashang.html">&lt;h2 id=&quot;dear-ashang&quot;&gt;Dear Ashang&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://kaldan007.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kaldan007.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-08-21T02:07:38-05:00</updated><id>https://kaldan007.github.io/blog/feed.xml</id><title type="html">Kaldan’s Blog</title><subtitle>An easy to use blogging platform with support for Jupyter Notebooks.</subtitle><entry><title type="html">Dear Ashang</title><link href="https://kaldan007.github.io/blog/reflection/2020/08/05/Dear-Ashang.html" rel="alternate" type="text/html" title="Dear Ashang" /><published>2020-08-05T00:00:00-05:00</published><updated>2020-08-05T00:00:00-05:00</updated><id>https://kaldan007.github.io/blog/reflection/2020/08/05/Dear%20Ashang</id><content type="html" xml:base="https://kaldan007.github.io/blog/reflection/2020/08/05/Dear-Ashang.html">&lt;h2 id=&quot;dear-ashang&quot;&gt;Dear Ashang&lt;/h2&gt;
 
 &lt;p&gt;I, your tsawo Kaldan wanted to tell you few things. Yesterday was the day that you left us three years ago. As usual, everyone in our family started contributing to recite &lt;strong&gt;thardo&lt;/strong&gt; hundred times. Cho Wangdak explain the gist of &lt;strong&gt;Thardo&lt;/strong&gt; to everyone and told us about those wonderful coincidence occurred during the first time our three families initiated after you passed away. If you are wondering about eve, she is doing much better. Everyone is trying their best to help her.&lt;/p&gt;
 
@@ -56,7 +56,7 @@
 &lt;p&gt;&lt;img src=&quot;/blog/images/transkribus/block_diagram.png&quot; alt=&quot;&quot; title=&quot;Block diagram&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;training-data-collection&quot;&gt;Training data collection&lt;/h2&gt;
-&lt;p&gt;Since most of our pechas are in distinct handwriting, we always try to train dedicated model for each pecha to get better transcription. We always train our models with training and validation data of ratio 8:2. While collecting training and validation data for the model, we tends to divide the process into two main parts. Those are layout analysis and getting respective trasncription.&lt;/p&gt;
+&lt;p&gt;Since most of our pechas are in distinct handwriting, we always try to train dedicated model for each pecha to get better transcription. We always train our models with training and validation data of ratio 8:2. While collecting training and validation data for the model, we tends to divide the process into two main parts. Those are layout analysis and getting respective transcription.&lt;/p&gt;
 
 &lt;h3 id=&quot;layout-annalysis&quot;&gt;Layout annalysis&lt;/h3&gt;
 &lt;p&gt;It is the part where segmentation of lines in image take place. Transkribus has multiple ways of doing the task design specifically for some general manuscripts layout. We tried mutliple layout analysis models among which newspaper model out perform the rest in our case. Hence we choosed it. But still newspaper model dosen’t produce perfect layout analysis. In order to get better layout analysis, we have written a  script to tune layout analysis as per our requirement.&lt;/p&gt;
@@ -94,9 +94,45 @@
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;transcript&quot;&gt;Transcript&lt;/h3&gt;
+&lt;p&gt;For preparing training data, the transciption of training images are done manually. But we have used different method to apply those transcript in our respective collection.&lt;/p&gt;
+&lt;h4 id=&quot;what-we-tried-1&quot;&gt;What we tried:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Initially we transcript as we trace boxes but it turns out to be labour intensive and impractical with poor internet connectivity.&lt;/li&gt;
+  &lt;li&gt;We found that under 400 pages model preform very poor as proofreading is more work than transcribing.
+    &lt;h4 id=&quot;our-solution-1&quot;&gt;Our Solution:&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;We proofread Google OCR output of existing pecha and save it in a text file.&lt;/li&gt;
+  &lt;li&gt;From that text file, we extract transcribe line by line and combine to layout analysis in Page folder(which consist of xml files having detail informations about segments present in image with their coordinates and respective transcript) with custom post-processing script.&lt;/li&gt;
+  &lt;li&gt;The solution reduce the labour efford as we need to proof read Google OCRed result rather than transcripting everything from scratch. Also the whole process become less internet dependent.&lt;/li&gt;
+  &lt;li&gt;Here is a screenshot of applied transcript using our script.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/transkribus/custom_transcript.png&quot; alt=&quot;&quot; title=&quot;Transcipt applied using our script&quot; /&gt;&lt;/p&gt;
+
 &lt;h2 id=&quot;model-training&quot;&gt;Model Training&lt;/h2&gt;
-&lt;h2 id=&quot;transcripting-using-model&quot;&gt;Transcripting using Model&lt;/h2&gt;
-&lt;h2 id=&quot;post-processing-the-model-output&quot;&gt;Post Processing the Model output&lt;/h2&gt;</content><author><name></name></author><summary type="html">What is Transkribus? Transkribus is a software deticated for transcripting text from handwritten or printed old manuscript’s images. It enable users to train dedicated model for recognising text in manuscripts. Shout out to H2020 Project READ(Recognition and Enrichment of Archival Documents) for funding the transkribus project. To know more about transkribus project itself and explore more about the use case, you can refer transkribus webpage here. I will be assuming that you have pretty good idea about how does transkribus work.</summary></entry><entry><title type="html">I</title><link href="https://kaldan007.github.io/blog/reflection/2020/07/21/I.html" rel="alternate" type="text/html" title="I" /><published>2020-07-21T00:00:00-05:00</published><updated>2020-07-21T00:00:00-05:00</updated><id>https://kaldan007.github.io/blog/reflection/2020/07/21/I</id><content type="html" xml:base="https://kaldan007.github.io/blog/reflection/2020/07/21/I.html">&lt;h2 id=&quot;i&quot;&gt;“I”&lt;/h2&gt;
+&lt;h4 id=&quot;what-we-tried-2&quot;&gt;What we tried:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;We initially train our model on manually traced boxes hoping that model will learn our precise segmentation. Unfortunately, it didn’t as we came to know that segmentation model and HTR model are two different thing. So we found preparing precise segemented training data unneccesary effort.&lt;/li&gt;
+  &lt;li&gt;Our initial models were train on 50 epochs.
+    &lt;h4 id=&quot;issues&quot;&gt;Issues:&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Model trained on  manual boxes performs poorly on “Newspaper” layout analysis
+    &lt;h4 id=&quot;our-solution-2&quot;&gt;Our Solution:&lt;/h4&gt;
+    &lt;p&gt;We used Newspaper Layout Analysis and run it on our script to get better segmentation and faster transcript applied. Trained our model on 500 epochs.&lt;/p&gt;
+    &lt;h2 id=&quot;transcribing-using-model&quot;&gt;Transcribing using Model&lt;/h2&gt;
+    &lt;p&gt;Since our model is ready, we started using it. The steps involve in transcribing pechas using our model are following:&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Upload the pecha in our transkribus collection.&lt;/li&gt;
+  &lt;li&gt;We run &lt;strong&gt;Newspaper Layout Analysis&lt;/strong&gt; on the pecha.&lt;/li&gt;
+  &lt;li&gt;Export the pecha in transkribus format.&lt;/li&gt;
+  &lt;li&gt;Run our preprocessing script on the exported file to get better alignment and noise free document.&lt;/li&gt;
+  &lt;li&gt;Upload the resultant document in collection.&lt;/li&gt;
+  &lt;li&gt;Use our HTR model to transcribe.&lt;/li&gt;
+  &lt;li&gt;Export the pecha in transkribus format.
+    &lt;h2 id=&quot;post-processing-the-model-output&quot;&gt;Post Processing the Model output&lt;/h2&gt;
+    &lt;p&gt;The final result of model will be given as input to a post processing script. The post processing script will do required rearrangement and removal of noises. It will extract the transcribed text  and save it in a text file. That text file is your final result.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">What is Transkribus? Transkribus is a software deticated for transcripting text from handwritten or printed old manuscript’s images. It enable users to train dedicated model for recognising text in manuscripts. Shout out to H2020 Project READ(Recognition and Enrichment of Archival Documents) for funding the transkribus project. To know more about transkribus project itself and explore more about the use case, you can refer transkribus webpage here. I will be assuming that you have pretty good idea about how does transkribus work.</summary></entry><entry><title type="html">I</title><link href="https://kaldan007.github.io/blog/reflection/2020/07/21/I.html" rel="alternate" type="text/html" title="I" /><published>2020-07-21T00:00:00-05:00</published><updated>2020-07-21T00:00:00-05:00</updated><id>https://kaldan007.github.io/blog/reflection/2020/07/21/I</id><content type="html" xml:base="https://kaldan007.github.io/blog/reflection/2020/07/21/I.html">&lt;h2 id=&quot;i&quot;&gt;“I”&lt;/h2&gt;
 
 &lt;p&gt;First and foremost, I would like to pay homage to three jewels and my gurus from whom I have received teaching. Whatever I am writing here is nothing that I have came up by myself. It is from my own understanding of teachings that I have received and books I have read written by Buddhist scholars. I would like to make another thing very clear that I am an amateur reader or not a avid reader hence I would highly recommend you to examine and cross check whatever I am claiming or citing with respective legitimate source. I am always open to any discourse.&lt;/p&gt;
 
