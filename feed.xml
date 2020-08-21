@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://kaldan007.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kaldan007.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-08-20T08:08:26-05:00</updated><id>https://kaldan007.github.io/blog/feed.xml</id><title type="html">Kaldan’s Blog</title><subtitle>An easy to use blogging platform with support for Jupyter Notebooks.</subtitle><entry><title type="html">Dear Ashang</title><link href="https://kaldan007.github.io/blog/reflection/2020/08/05/Dear-Ashang.html" rel="alternate" type="text/html" title="Dear Ashang" /><published>2020-08-05T00:00:00-05:00</published><updated>2020-08-05T00:00:00-05:00</updated><id>https://kaldan007.github.io/blog/reflection/2020/08/05/Dear%20Ashang</id><content type="html" xml:base="https://kaldan007.github.io/blog/reflection/2020/08/05/Dear-Ashang.html">&lt;h2 id=&quot;dear-ashang&quot;&gt;Dear Ashang&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://kaldan007.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kaldan007.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-08-21T00:39:39-05:00</updated><id>https://kaldan007.github.io/blog/feed.xml</id><title type="html">Kaldan’s Blog</title><subtitle>An easy to use blogging platform with support for Jupyter Notebooks.</subtitle><entry><title type="html">Dear Ashang</title><link href="https://kaldan007.github.io/blog/reflection/2020/08/05/Dear-Ashang.html" rel="alternate" type="text/html" title="Dear Ashang" /><published>2020-08-05T00:00:00-05:00</published><updated>2020-08-05T00:00:00-05:00</updated><id>https://kaldan007.github.io/blog/reflection/2020/08/05/Dear%20Ashang</id><content type="html" xml:base="https://kaldan007.github.io/blog/reflection/2020/08/05/Dear-Ashang.html">&lt;h2 id=&quot;dear-ashang&quot;&gt;Dear Ashang&lt;/h2&gt;
 
 &lt;p&gt;I, your tsawo Kaldan wanted to tell you few things. Yesterday was the day that you left us three years ago. As usual, everyone in our family started contributing to recite &lt;strong&gt;thardo&lt;/strong&gt; hundred times. Cho Wangdak explain the gist of &lt;strong&gt;Thardo&lt;/strong&gt; to everyone and told us about those wonderful coincidence occurred during the first time our three families initiated after you passed away. If you are wondering about eve, she is doing much better. Everyone is trying their best to help her.&lt;/p&gt;
 
@@ -64,26 +64,33 @@
 &lt;h4 id=&quot;what-we-tried&quot;&gt;What we tried:&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;We ran existing models without adjustment. Since our segmentation is inaqurate, hence our recognitions results turnout to be noisy and disordered borderlines are considered as text.&lt;/p&gt;
+    &lt;p&gt;We ran existing models without adjustment. Since our segmentation is inaccurate, hence our recognitions results turnout to be noisy and disordered borderlines are considered as text.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;We ran newspaper LA model and try to correct manually. It was a failure as the method was very time and labour expensive(1-2 hr. per page).&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;We traced detailed boxes from scratch thinking that LA model will learn from our traced images. Unfortunately, it didn’t and whole afford became in vien.&lt;/p&gt;
+    &lt;p&gt;We traced detailed boxes from scratch thinking that LA model will learn from our traced images. Unfortunately, it didn’t and whole afford became in vain.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;our-solution&quot;&gt;Our Solution:&lt;/h4&gt;
 &lt;ul&gt;
-  &lt;li&gt;First we ran &lt;strong&gt;Newspaper Layout Analysis&lt;/strong&gt; on our images.&lt;/li&gt;
+  &lt;li&gt;First we ran &lt;strong&gt;Newspaper Layout Analysis&lt;/strong&gt; on our images as shown in image below.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/transkribus/default_newspaper.png&quot; alt=&quot;&quot; title=&quot;Existing Newspaper layout analysis output&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
   &lt;li&gt;We download the resultant files in Traskribus format.&lt;/li&gt;
   &lt;li&gt;In transkribus file format, we ran our script on &lt;strong&gt;Page&lt;/strong&gt; folder.&lt;/li&gt;
-  &lt;li&gt;Our script will bring all the lines into order, remove noise and unify broken segments of a line into one segment.&lt;/li&gt;
+  &lt;li&gt;Our script will bring all the lines into order, remove noise and unify broken segments of a line into one segment. Here is a sample of our custom newpaper layout analysis.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/transkribus/custom_newspaper.png&quot; alt=&quot;&quot; title=&quot;Custom newpaper layout analysis generated by our script&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
   &lt;li&gt;We upload the updated &lt;strong&gt;Page&lt;/strong&gt; folder along with image files and meta data files to the respective Transkribus Collection.&lt;/li&gt;
-  &lt;li&gt;We ran our HTR model on that file.&lt;/li&gt;
-  &lt;li&gt;After that we download the resultant file.&lt;/li&gt;
-  &lt;li&gt;Resultant file goes under a post processing script which reorder alignment whereever needed. A segment is consider noise if length of text in a segment is less than a threshold. Noise segments are ignored in order to get better result.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;transcript&quot;&gt;Transcript&lt;/h3&gt;
