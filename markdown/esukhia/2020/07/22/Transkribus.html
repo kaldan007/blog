@@ -154,6 +154,7 @@ window.onload = wrap_img;
 <p><img src="/blog/images/transkribus/pering_example.jpg" alt="" title="Example of Pering"></p>
 
 <p>We faced many challenges while trying to transcripting those pechas using Transkribus in the normal way. We figured out that we can do some interference to get better results. Hence this article is about what kind of interference that we have done in order to get a better model and better transcription.</p>
+
 <h2 id="block-diagram">
 <a class="anchor" href="#block-diagram" aria-hidden="true"><span class="octicon octicon-link"></span></a>Block diagram</h2>
 <p>Here is the block diagram of the whole procedure that we follow to train our model efficiently.</p>
@@ -177,10 +178,14 @@ window.onload = wrap_img;
   <li>
     <p>We ran a newspaper Layout Analysis model and tried to correct manually. It was a failure as the method was very time and labour expensive(1-2 hr. per page).</p>
   </li>
-  <li>We traced detailed boxes from scratch thinking that the Layout Analysis model will learn from our traced images. Unfortunately, it didn’t and the whole effort became in vain.
-    <h4 id="our-solution">
-<a class="anchor" href="#our-solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Our Solution:</h4>
+  <li>
+    <p>We traced detailed boxes from scratch thinking that the Layout Analysis model will learn from our traced images. Unfortunately, it didn’t and the whole effort became in vain.</p>
   </li>
+</ul>
+
+<h4 id="our-solution">
+<a class="anchor" href="#our-solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Our Solution:</h4>
+<ul>
   <li>First we ran <strong>Newspaper Layout Analysis</strong> on our images as shown in image below.</li>
 </ul>
 
@@ -201,14 +206,17 @@ window.onload = wrap_img;
 <h3 id="transcript">
 <a class="anchor" href="#transcript" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transcript</h3>
 <p>For preparing training data, the transcription of training images are done manually. But we have used different methods to apply those transcripts in our respective collection.</p>
+
 <h4 id="what-we-tried-1">
 <a class="anchor" href="#what-we-tried-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>What we tried:</h4>
 <ul>
   <li>Initially we transcript as we trace boxes but it turns out to be labour intensive and impractical with poor internet connectivity.</li>
-  <li>We found that under 400 pages model perform very poor as proofreading is more work than transcribing.
-    <h4 id="our-solution-1">
+  <li>We found that under 400 pages model perform very poor as proofreading is more work than transcribing.</li>
+</ul>
+
+<h4 id="our-solution-1">
 <a class="anchor" href="#our-solution-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Our Solution:</h4>
-  </li>
+<ul>
   <li>We proofread Google OCR output of existing pecha and save it in a text file.</li>
   <li>From that text file, we extract transcribe line by line and combine it to layout analysis in the Page folder(which consist of xml files having detailed information about segments present in image with their coordinates and respective transcript) with custom post-processing script.</li>
   <li>The solution reduces the labour effort as we need to proofread Google OCRed results rather than transcripting everything from scratch. Also the whole process becomes less internet dependent.</li>
