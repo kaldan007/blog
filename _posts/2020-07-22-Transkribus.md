@@ -15,6 +15,7 @@ In our case, we have plenty of rare and old manuscripts waiting for digitisation
 ![]({{ site.baseurl }}/images/transkribus/pering_example.jpg "Example of Pering")
  
 We faced many challenges while trying to transcripting those pechas using Transkribus in the normal way. We figured out that we can do some interference to get better results. Hence this article is about what kind of interference that we have done in order to get a better model and better transcription.
+
 ## Block diagram
 Here is the block diagram of the whole procedure that we follow to train our model efficiently.
  
@@ -34,6 +35,7 @@ It is the part where segmentation of lines in image take place. Transkribus has 
 - We ran a newspaper Layout Analysis model and tried to correct manually. It was a failure as the method was very time and labour expensive(1-2 hr. per page).
  
 - We traced detailed boxes from scratch thinking that the Layout Analysis model will learn from our traced images. Unfortunately, it didn't and the whole effort became in vain.
+
 #### Our Solution:
 - First we ran **Newspaper Layout Analysis** on our images as shown in image below.
  
@@ -51,9 +53,11 @@ It is the part where segmentation of lines in image take place. Transkribus has 
  
 ### Transcript
 For preparing training data, the transcription of training images are done manually. But we have used different methods to apply those transcripts in our respective collection.
+
 #### What we tried:
 - Initially we transcript as we trace boxes but it turns out to be labour intensive and impractical with poor internet connectivity.
 - We found that under 400 pages model perform very poor as proofreading is more work than transcribing. 
+
 #### Our Solution:
 - We proofread Google OCR output of existing pecha and save it in a text file.
 - From that text file, we extract transcribe line by line and combine it to layout analysis in the Page folder(which consist of xml files having detailed information about segments present in image with their coordinates and respective transcript) with custom post-processing script.
