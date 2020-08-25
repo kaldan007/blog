@@ -158,7 +158,7 @@ window.onload = wrap_img;
 <a class="anchor" href="#block-diagram" aria-hidden="true"><span class="octicon octicon-link"></span></a>Block diagram</h2>
 <p>Here is the block diagram of the whole procedure that we follow to train our model efficiently.</p>
 
-<p><img src="/blog/images/transkribus/block_diagram.png" alt="" title="Block diagram"></p>
+<p><img src="/blog/images/transkribus/Model_training_block_diagram.png" alt="" title="Block diagram of Model training"></p>
 
 <h2 id="training-data-collection">
 <a class="anchor" href="#training-data-collection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Training data collection</h2>
@@ -166,7 +166,7 @@ window.onload = wrap_img;
 
 <h3 id="layout-analysis">
 <a class="anchor" href="#layout-analysis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Layout analysis</h3>
-<p>It is the part where segmentation of lines in image take place. Transkribus has multiple ways of doing the task design specifically for some general manuscripts layout. We tried multiple layout analysis models among which the <strong><em>Newspaper model</em></strong> outperformed the rest in our case. Hence we chose it. But still the newspaper model does not produce perfect layout analysis. In order to get better layout analysis, we have written a  script to tune the result of <strong>Newspaper layout analysis</strong> as per our requirement.</p>
+<p>It is the part where segmentation of lines in image take place. Transkribus has multiple ways of doing the task design specifically for some general manuscripts layout. We tried multiple layout analysis models among which the <strong><em>Newspaper model</em></strong> outperformed the rest in our case. Hence we chose it. But still the newspaper model does not produce perfect layout analysis. In order to get better layout analysis, we have written a  script to tune the result of <em>Newspaper layout analysis</em> as per our requirement.</p>
 
 <h4 id="what-we-tried">
 <a class="anchor" href="#what-we-tried" aria-hidden="true"><span class="octicon octicon-link"></span></a>What we tried:</h4>
@@ -219,24 +219,30 @@ window.onload = wrap_img;
 
 <h2 id="model-training">
 <a class="anchor" href="#model-training" aria-hidden="true"><span class="octicon octicon-link"></span></a>Model Training</h2>
+<p>We have trained multiple model using different hyper-parameters.</p>
+
 <h3 id="what-we-tried-2">
 <a class="anchor" href="#what-we-tried-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>What we tried:</h3>
 <ul>
   <li>We initially train our model on manually traced boxes hoping that model will learn our precise segmentation. Unfortunately, it didn’t as we came to know that segmentation model and HTR model are two different things. So we found preparing precise segmented training data unnecessary effort.</li>
-  <li>Our initial models were trained on 50 epochs.
-    <h3 id="issues">
-<a class="anchor" href="#issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Issues:</h3>
-  </li>
-  <li>Model trained on  manual boxes performs poorly on “Newspaper” layout analysis
-    <h3 id="our-solution-2">
-<a class="anchor" href="#our-solution-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Our Solution:</h3>
-    <p>We used Newspaper Layout Analysis and ran it on our script to get better segmentation and faster transcript applied. Trained our model on 500 epochs.</p>
-    <h2 id="transcribing-using-model">
-<a class="anchor" href="#transcribing-using-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transcribing using Model</h2>
-    <h3 id="block-diagram-1">
-<a class="anchor" href="#block-diagram-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Block diagram</h3>
-  </li>
+  <li>Our initial models were trained on 50 epochs.</li>
 </ul>
+
+<h3 id="issues">
+<a class="anchor" href="#issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Issues:</h3>
+<ul>
+  <li>Model trained on  manual boxes performs poorly on “Newspaper” layout analysis</li>
+</ul>
+
+<h3 id="our-solution-2">
+<a class="anchor" href="#our-solution-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Our Solution:</h3>
+<p>We used Newspaper Layout Analysis and ran it on our script to get better segmentation and faster transcript applied. Trained our model on 500 epochs.</p>
+
+<h2 id="transcribing-using-model">
+<a class="anchor" href="#transcribing-using-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transcribing using Model</h2>
+
+<h3 id="block-diagram-1">
+<a class="anchor" href="#block-diagram-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Block diagram</h3>
 
 <p><img src="/blog/images/transkribus/block-diagram-for-using-transkribus.png" alt="" title="Block diagram showing how we use our custom script to get better transcript result using Transkribus"></p>
 
