@@ -5,76 +5,84 @@ description: Handwritten Text Recognition in Tibetan manuscript using Transkribu
 categories: [markdown, Esukhia]
 title: How to use Transkribus to transcribe Tibetan pecha(pering) effectively?
 ---
-
-## What is Transkribus?
-Transkribus is a software deticated for transcripting text from handwritten or printed old manuscript's images. It enable users to train dedicated model for recognising text in manuscripts. Shout out to H2020 Project READ[(Recognition and Enrichment of Archival Documents)](https://read.transkribus.eu/) for funding the transkribus project. To know more about transkribus project itself and explore more about the use case, you can refer transkribus webpage [here](https://transkribus.eu/wiki/images/7/77/How_to_use_TRANSKRIBUS_-_10_steps.pdf). I will be assuming that you have pretty good idea about how does transkribus work.
-
-## Our Use case
-In our case, we have plenty of rare and old manuscripts waiting for digitisation. Most of our manuscript are in pering layout format. Pering is the most common pecha(manusript) layout format found in early days. An example of pering layout page is shown below.(image_link) We faced many challanges while trying to transcripting those pechas using transkribus in normal way. We figured out that we can do some interference to get better results. Hence this article is about what kind of interference that we have done in order to get better model and better transcription. 
-## Block diagram
-Here is the block diagram of the whole procedure that we follow.
-
-
-![]({{ site.baseurl }}/images/transkribus/block_diagram.png "Block diagram")
-
-
-## Training data collection
-Since most of our pechas are in distinct handwriting, we always try to train dedicated model for each pecha to get better transcription. We always train our models with training and validation data of ratio 8:2. While collecting training and validation data for the model, we tends to divide the process into two main parts. Those are layout analysis and getting respective transcription.
-
-### Layout annalysis
-It is the part where segmentation of lines in image take place. Transkribus has multiple ways of doing the task design specifically for some general manuscripts layout. We tried mutliple layout analysis models among which newspaper model out perform the rest in our case. Hence we choosed it. But still newspaper model dosen't produce perfect layout analysis. In order to get better layout analysis, we have written a  script to tune layout analysis as per our requirement.
-
-#### What we tried:
-- We ran existing models without adjustment. Since our segmentation is inaccurate, hence our recognitions results turnout to be noisy and disordered borderlines are considered as text.
-
- - We ran newspaper LA model and try to correct manually. It was a failure as the method was very time and labour expensive(1-2 hr. per page).
-
- - We traced detailed boxes from scratch thinking that LA model will learn from our traced images. Unfortunately, it didn't and whole afford became in vain.
  
+## What is Transkribus?
+Transkribus is a software dedicated for transcripting text from handwritten or printed old manuscript's images. It enables users to train a dedicated model for recognising text in manuscripts. Shout out to H2020 Project READ[(Recognition and Enrichment of Archival Documents)](https://read.transkribus.eu/) for funding the Transkribus project. To know more about Transkribus project itself and explore more about the use case, you can refer Transkribus webpage [here](https://transkribus.eu/wiki/images/7/77/How_to_use_TRANSKRIBUS_-_10_steps.pdf). I will be assuming that you have a pretty good idea about how Transkribus work.
+ 
+## Our Use case
+In our case, we have plenty of rare and old manuscripts waiting for digitisation. Most of our manuscripts are in pering layout format. Pering is the most common pecha(Tibetan manuscript) layout format found in early days. An example of a pering layout page is shown below.
+ 
+![]({{ site.baseurl }}/images/transkribus/pering_example.jpg "Example of Pering")
+ 
+We faced many challenges while trying to transcripting those pechas using Transkribus in the normal way. We figured out that we can do some interference to get better results. Hence this article is about what kind of interference that we have done in order to get a better model and better transcription.
+## Block diagram
+Here is the block diagram of the whole procedure that we follow to train our model efficiently.
+ 
+ 
+![]({{ site.baseurl }}/images/transkribus/block_diagram.png "Block diagram")
+ 
+ 
+## Training data collection
+Since most of our pechas are in distinct handwriting, we always try to train a dedicated model for each pecha to get better transcription. We always train our models with training and validation data of ratio 8:2. While collecting training and validation data for the model, we tends to divide the process into two main parts. Those are layout analysis and getting respective transcriptions.
+ 
+### Layout analysis
+It is the part where segmentation of lines in image take place. Transkribus has multiple ways of doing the task design specifically for some general manuscripts layout. We tried multiple layout analysis models among which the ***Newspaper model*** outperformed the rest in our case. Hence we chose it. But still the newspaper model does not produce perfect layout analysis. In order to get better layout analysis, we have written a  script to tune the result of **Newspaper layout analysis** as per our requirement.
+ 
+#### What we tried:
+- We ran existing models without adjustment. Since our segmentation is inaccurate, hence our recognition results turnout to be noisy and disordered borderlines are considered as text.
+ 
+- We ran a newspaper Layout Analysis model and tried to correct manually. It was a failure as the method was very time and labour expensive(1-2 hr. per page).
+ 
+- We traced detailed boxes from scratch thinking that the Layout Analysis model will learn from our traced images. Unfortunately, it didn't and the whole effort became in vain.
 #### Our Solution:
 - First we ran **Newspaper Layout Analysis** on our images as shown in image below.
-
+ 
 ![]({{ site.baseurl }}/images/transkribus/default_newspaper.png "Existing Newspaper layout analysis output")
-
-
-- We download the resultant files in Traskribus format.
-- In transkribus file format, we ran our script on **Page** folder.
-- Our script will bring all the lines into order, remove noise and unify broken segments of a line into one segment. Here is a sample of our custom newpaper layout analysis.
-
-![]({{ site.baseurl }}/images/transkribus/custom_newspaper.png "Custom newpaper layout analysis generated by our script")
-
-
-- We upload the updated **Page** folder along with image files and meta data files to the respective Transkribus Collection. 
-
+ 
+ 
+- We download the resultant files in Transkribus format.
+- In Transkribus file format, we ran our script on **Page** folder.
+- Our script will bring all the lines into order, remove noise and unify broken segments of a line into one segment. Here is a sample of our custom newspaper layout analysis.
+ 
+![]({{ site.baseurl }}/images/transkribus/custom_newspaper.png "Custom newspaper layout analysis generated by our script")
+ 
+ 
+- We upload the updated **Page** folder along with image files and metadata files to the respective Transkribus Collection.
+ 
 ### Transcript
-For preparing training data, the transciption of training images are done manually. But we have used different method to apply those transcript in our respective collection.
+For preparing training data, the transcription of training images are done manually. But we have used different methods to apply those transcripts in our respective collection.
 #### What we tried:
 - Initially we transcript as we trace boxes but it turns out to be labour intensive and impractical with poor internet connectivity.
-- We found that under 400 pages model preform very poor as proofreading is more work than transcribing.  
+- We found that under 400 pages model perform very poor as proofreading is more work than transcribing. 
 #### Our Solution:
 - We proofread Google OCR output of existing pecha and save it in a text file.
-- From that text file, we extract transcribe line by line and combine to layout analysis in Page folder(which consist of xml files having detail informations about segments present in image with their coordinates and respective transcript) with custom post-processing script.
-- The solution reduce the labour efford as we need to proof read Google OCRed result rather than transcripting everything from scratch. Also the whole process become less internet dependent.
-- Here is a screenshot of applied transcript using our script.
-
-![]({{ site.baseurl }}/images/transkribus/custom_transcript.png "Transcipt applied using our script")
-
+- From that text file, we extract transcribe line by line and combine it to layout analysis in the Page folder(which consist of xml files having detailed information about segments present in image with their coordinates and respective transcript) with custom post-processing script.
+- The solution reduces the labour effort as we need to proofread Google OCRed results rather than transcripting everything from scratch. Also the whole process becomes less internet dependent.
+- Here is a screenshot of the applied transcript using our script.
+ 
+![]({{ site.baseurl }}/images/transkribus/custom_transcript.png "Transcript applied using our script")
+ 
 ## Model Training
-#### What we tried:
-- We initially train our model on manually traced boxes hoping that model will learn our precise segmentation. Unfortunately, it didn't as we came to know that segmentation model and HTR model are two different thing. So we found preparing precise segemented training data unneccesary effort.
-- Our initial models were train on 50 epochs.
-#### Issues:
-- Model trained on  manual boxes performs poorly on "Newspaper" layout analysis 
-#### Our Solution:
-We used Newspaper Layout Analysis and run it on our script to get better segmentation and faster transcript applied. Trained our model on 500 epochs.
+### What we tried:
+- We initially train our model on manually traced boxes hoping that model will learn our precise segmentation. Unfortunately, it didn't as we came to know that segmentation model and HTR model are two different things. So we found preparing precise segmented training data unnecessary effort.
+- Our initial models were trained on 50 epochs.
+### Issues:
+- Model trained on  manual boxes performs poorly on "Newspaper" layout analysis
+### Our Solution:
+We used Newspaper Layout Analysis and ran it on our script to get better segmentation and faster transcript applied. Trained our model on 500 epochs.
 ## Transcribing using Model
-Since our model is ready, we started using it. The steps involve in transcribing pechas using our model are following:
-- Upload the pecha in our transkribus collection.
+### Block diagram
+ 
+![]({{ site.baseurl }}/images/transkribus/block-diagram-for-using-transkribus.png "Block diagram showing how we use our custom script to get better transcript result using Transkribus")
+ 
+Since our model is ready, we started using it. The steps involved in transcribing pechas using our model are following:
+- Upload the pecha in our Transkribus collection.
 - We run **Newspaper Layout Analysis** on the pecha.
-- Export the pecha in transkribus format.
+- Export the pecha in Transkribus format.
 - Run our preprocessing script on the exported file to get better alignment and noise free document.
 - Upload the resultant document in collection.
 - Use our HTR model to transcribe.
-- Export the pecha in transkribus format.
+- Export the pecha in Transkribus format.
+
 ## Post Processing the Model output
-The final result of model will be given as input to a post processing script. The post processing script will do required rearrangement and removal of noises. It will extract the transcribed text  and save it in a text file. That text file is your final result.
+The final result of the model will be given as input to a post processing script. The post processing script will do required rearrangement and removal of noises. It will extract the transcribed text  and save it in a text file. That text file is your final result.
