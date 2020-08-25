@@ -19,7 +19,7 @@ We faced many challenges while trying to transcripting those pechas using Transk
 Here is the block diagram of the whole procedure that we follow to train our model efficiently.
  
  
-![]({{ site.baseurl }}/images/transkribus/block_diagram.png "Block diagram")
+![]({{ site.baseurl }}/images/transkribus/Model_training_block_diagram.png "Block diagram of Model training")
  
  
 ## Training data collection
