@@ -26,7 +26,7 @@ Here is the block diagram of the whole procedure that we follow to train our mod
 Since most of our pechas are in distinct handwriting, we always try to train a dedicated model for each pecha to get better transcription. We always train our models with training and validation data of ratio 8:2. While collecting training and validation data for the model, we tends to divide the process into two main parts. Those are layout analysis and getting respective transcriptions.
  
 ### Layout analysis
-It is the part where segmentation of lines in image take place. Transkribus has multiple ways of doing the task design specifically for some general manuscripts layout. We tried multiple layout analysis models among which the ***Newspaper model*** outperformed the rest in our case. Hence we chose it. But still the newspaper model does not produce perfect layout analysis. In order to get better layout analysis, we have written a  script to tune the result of **Newspaper layout analysis** as per our requirement.
+It is the part where segmentation of lines in image take place. Transkribus has multiple ways of doing the task design specifically for some general manuscripts layout. We tried multiple layout analysis models among which the ***Newspaper model*** outperformed the rest in our case. Hence we chose it. But still the newspaper model does not produce perfect layout analysis. In order to get better layout analysis, we have written a  script to tune the result of *Newspaper layout analysis* as per our requirement.
  
 #### What we tried:
 - We ran existing models without adjustment. Since our segmentation is inaccurate, hence our recognition results turnout to be noisy and disordered borderlines are considered as text.
@@ -63,14 +63,20 @@ For preparing training data, the transcription of training images are done manua
 ![]({{ site.baseurl }}/images/transkribus/custom_transcript.png "Transcript applied using our script")
  
 ## Model Training
+We have trained multiple model using different hyper-parameters.
+
 ### What we tried:
 - We initially train our model on manually traced boxes hoping that model will learn our precise segmentation. Unfortunately, it didn't as we came to know that segmentation model and HTR model are two different things. So we found preparing precise segmented training data unnecessary effort.
 - Our initial models were trained on 50 epochs.
+
 ### Issues:
 - Model trained on  manual boxes performs poorly on "Newspaper" layout analysis
+
 ### Our Solution:
 We used Newspaper Layout Analysis and ran it on our script to get better segmentation and faster transcript applied. Trained our model on 500 epochs.
+
 ## Transcribing using Model
+
 ### Block diagram
  
 ![]({{ site.baseurl }}/images/transkribus/block-diagram-for-using-transkribus.png "Block diagram showing how we use our custom script to get better transcript result using Transkribus")
